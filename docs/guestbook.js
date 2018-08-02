@@ -1,27 +1,25 @@
 /**
  * Web application
  */
-const apiUrl = 'https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/df9fe46a2332ad3b8ea9192dab595d75f7ba4ec9a365768e05da2154148b1a0b/guestbook';
+const apiUrl = 'https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/df9fe46a2332ad3b8ea9192dab595d75f7ba4ec9a365768e05da2154148b1a0b/questionfind';
 const guestbook = {
   // retrieve the existing guestbook entries
   get() {
     return $.ajax({
-      type: 'GET',
+      type: 'POST',
       url: `${apiUrl}/entries`,
       dataType: 'json'
     });
   },
-  // add a single guestbood entry
-  add(name, email, comment) {
-    console.log('Sending', name, email, comment)
+  // add a select guestbood entry
+  add(selector) {
+    console.log('Sending',selector)
     return $.ajax({
-      type: 'PUT',
+      type: 'POST',
       url: `${apiUrl}/entries`,
       contentType: 'application/json; charset=utf-8',
       data: JSON.stringify({
-        name,
-        email,
-        comment,
+        selector,
       }),
       dataType: 'json',
     });
@@ -57,13 +55,11 @@ const guestbook = {
 
   // intercept the click on the submit button, add the guestbook entry and
   // reload entries on success
-  $(document).on('submit', '#addEntry', function(e) {
+  $(document).on('submit', '#searchEntry', function(e) {
     e.preventDefault();
 
     guestbook.add(
-      $('#name').val().trim(),
-      $('#email').val().trim(),
-      $('#comment').val().trim()
+      $('#selector').val().trim()
     ).done(function(result) {
       // reload entries
       loadEntries();
