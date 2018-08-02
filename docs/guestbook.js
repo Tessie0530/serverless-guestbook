@@ -3,6 +3,14 @@
  */
 const apiUrl = 'https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/df9fe46a2332ad3b8ea9192dab595d75f7ba4ec9a365768e05da2154148b1a0b/questionfind';
 const guestbook = {
+  // retrieve the existing guestbook entries
+  get() {
+    return $.ajax({
+      type: 'POST',
+      url: `${apiUrl}/entries`,
+      dataType: 'json'
+    });
+  },
   // add a select guestbood entry
   add(selector) {
     console.log('Sending',selector)
@@ -53,7 +61,18 @@ const guestbook = {
     guestbook.add(
       $('#selector').val().trim()
     ).done(function(result) {
-      loadEntries();
+      console.log('Loading entries...');
+      $('#entries').html('Loading entries...');
+      if (!result.entries) {
+        return;
+      }     
+      const context = {
+      entries: result.entries
+      }  
+      $('#entries').html(entriesTemplate(context));
+    }).error(function(error) {
+      $('#entries').html('No entries');
+      console.log(error);
     });
   });
 
