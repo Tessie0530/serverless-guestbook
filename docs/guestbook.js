@@ -61,15 +61,22 @@ const guestbook = {
     guestbook.add(
       $('#selector').val().trim()
     ).done(function(result) {
-      // reload entries
-      loadEntries();
+      console.log('Loading entries...');
+      $('#entries').html('Loading entries...');
+      if (!result.entries) {
+        return;
+      }     
+      const context = {
+      entries: result.entries
+      }  
+      $('#entries').html(entriesTemplate(context));
     }).error(function(error) {
+      $('#entries').html('No entries');
       console.log(error);
     });
   });
 
   $(document).ready(function() {
     prepareTemplates();
-    loadEntries();
   });
 })();
