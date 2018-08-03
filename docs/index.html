@@ -50,16 +50,20 @@
           <form action="" method="get">{{question}}<br>
             <label><input name="Charge" type="radio" value="" />Yes</label> <br>
             <label><input name="Charge" type="radio" value="" />No</label><br>
+            <input name="Answer submit" type="button" value="" onclick="openalert()"/>
           </form>
-          <div class="control">
-            <button class="button submit">Submit</button>
-          </div>
         </div>
       </article>
     </div>
     {{/each}}
   </script>
 
+  <script type="text/javascript">
+    function openalert() {
+      alert({{answer}});
+    }
+  </script>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="guestbook.js"></script>
