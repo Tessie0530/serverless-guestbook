@@ -50,20 +50,17 @@
           <form action="" method="get">{{question}}<br>
             <label><input name="Charge" type="radio" value="" />Yes</label> <br>
             <label><input name="Charge" type="radio" value="" />No</label><br>
-            <label><input name="Answer submit" type="button" value="" onclick="openalert()"/>Submit</label>
+            <label><input name="Answer submit" type="button" value="Submit" onclick="openalert()"/></label>
           </form>
         </div>
       </article>
     </div>
     {{/each}}
-  </script>
-
-  <script type="text/javascript">
     function openalert() {
       alert("111");
     }
   </script>
-  
+ 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="guestbook.js"></script>
