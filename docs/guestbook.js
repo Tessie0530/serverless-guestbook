@@ -12,14 +12,14 @@ const guestbook = {
     });
   },
   // add a select guestbood entry
-  add(selector) {
-    console.log('Sending',selector)
+  add(location) {
+    console.log('Sending',location)
     return $.ajax({
       type: 'POST',
       url: `${apiUrl}/entries`,
       contentType: 'application/json; charset=utf-8',
       data: JSON.stringify({
-        selector,
+        location,
       }),
       dataType: 'json',
     });
@@ -59,7 +59,7 @@ const guestbook = {
     e.preventDefault();
 
     guestbook.add(
-      $('#selector').val().trim()
+      $('#location').val().trim()
     ).done(function(result) {
       console.log('Loading entries...');
       $('#entries').html('Loading entries...');
